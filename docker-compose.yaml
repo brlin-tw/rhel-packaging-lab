@@ -9,6 +9,26 @@
 # SPDX-License-Identifier: CC-BY-SA-4.0
 name: rhel-packaging-lab
 services:
+  # Environment for doing lab activities
+  lab-environment:
+    container_name: rhel-packaging-lab
+    hostname: rhel-packaging-lab
+    image: rockylinux:8
+    volumes:
+      - type: bind
+        source: ./
+        target: /project
+    environment:
+      - http_proxy
+      - https_proxy
+      - HTTP_PROXY
+      - HTTPS_PROXY
+
+      # Set this environment variable to your local timezone settings
+      # for proper operation timestamp
+      #- TZ=CST-8
+    command: sleep infinity
+
   # Environment for testing the project
   test-environment:
     container_name: rhel-packaging-lab-test
@@ -28,3 +48,6 @@ services:
       # for proper operation timestamp
       #- TZ=CST-8
     command: sleep infinity
+    # Only launch when we're actually testing built packages
+    profiles:
+      - test
