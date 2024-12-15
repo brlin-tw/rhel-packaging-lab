@@ -7,6 +7,69 @@ Practice packaging RPM software packages using [Packaging and distributing softw
 
 \#rhel \#packaging \#rpm
 
+## Preparing the lab environment
+
+This project implements a container-based lab environment for you to practice the lab activities without contaminating your operating system.
+
+### Prerequisites
+
+The following prerequisites must be met in order to complete this section:
+
+* You must install either of the following software:
+    + Docker Engine(for a container-based lab environment setup)
+    + Vagrant and VirtualBox(for a virtual machine-based lab environment setup)
+* Your lab host must have connectivity to the Internet.
+
+### Preparation
+
+Follow th following steps to prepare the lab environment:
+
+1. Download the release package from [the Releases page](https://gitlab.com/brlin/rhel-packaging-lab/-/releases).
+1. Extract the downloaded release package using your preferred archive manipulation program/application.
+1. Launch your preferred text terminal emulator application.
+1. Switch the working directory to the directory that hosts [this README document](README.md).
+1. Run the following command to create the lab environment container:
+    + If you're using the container-based lab environment setup:
+
+        ```bash
+        docker_compose_up_opts=(
+            # Don't connect the controlling terminal to the Docker container process and release it back to the shell after container creation
+            --detach
+        )
+        docker compose up -d
+        ```
+
+        **NOTE:** Depending on your Docker Engine installation you may need to run this command(and all the future Docker commands) _as root_.
+
+    + If you're using the virtual machine-based lab environment setup:
+
+        ```bash
+        vagrant up
+        ```
+
+## Accessing the lab environment
+
+Run the following commands to access the lab environment:
+
+* If you're using the container-based lab environment setup:
+
+    ```bash
+    docker_exec_opts=(
+        # Connect the container process's standard input device to the controlling terminal
+        -i
+
+        # Support terminal management features required by the bash shell
+        -t
+    )
+    docker exec "${docker_exec_opts[@]}" rhel-packaging-lab bash --login
+    ```
+
+* If you're using the virtual machine-based lab environment setup:
+
+    ```bash
+    vagrant ssh
+    ```
+
 ## References
 
 The following material is referenced during the development of this project:

@@ -18,6 +18,9 @@ services:
       - type: bind
         source: ./
         target: /project
+      - type: bind
+        source: ./lab-assets/deploy-lab-environment.sh
+        target: /etc/profile.d/00-deploy-lab-environment.sh
     environment:
       - http_proxy
       - https_proxy
