@@ -4,6 +4,7 @@
 # SPDX-License-Identifier: CC-BY-SA-4.0
 Vagrant.configure("2") do |config|
   config.vm.box = "generic/rocky9"
+  #config.vm.box = "generic/rhel9"
 
   config.vm.synced_folder ".", "/vagrant"
 
