@@ -110,6 +110,9 @@ lab_dependency_pkgs=(
 
     # For building and running the pello package
     python3
+
+    # For editing source code files
+    vim-enhanced
 )
 rpm_opts=(
     # Query existing package and print it's name
