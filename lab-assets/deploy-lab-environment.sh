@@ -107,6 +107,9 @@ lab_dependency_pkgs=(
     # For building the cello package
     gcc
     make
+
+    # For building and running the pello package
+    python3
 )
 rpm_opts=(
     # Query existing package and print it's name
@@ -122,49 +125,6 @@ if ! rpm "${rpm_opts[@]}" "${lab_dependency_pkgs[@]}"; then
     if ! dnf install -y "${lab_dependency_pkgs[@]}"; then
         printf -- \
             '%s: Error: Unable to install the dependencies for the lab activities.\n' \
-            "${script_name}" \
-            1>&2
-        return 2
-    fi
-fi
-
-# The python command may not be available in all RedHat-like distribution-version combinations, we determine which is preferred by the distro by the platform interpreter then install it here
-#
-# Example value: "Python 3.9.18"
-if ! platform_python_version_string="$(/usr/libexec/platform-python --version)"; then
-    printf -- \
-        '%s: Error: Unable to ddetermine the version string of the platform Python interpreter.\n' \
-        "${script_name}" \
-        1>&2
-    return 2
-fi
-
-# Example value: "3.9.18"
-platform_python_version="${platform_python_version_string##* }"
-
-# Example value: "3.9"
-platform_python_version_major_minor="${platform_python_version%.*}"
-
-# Example value: "39"
-platform_python_version_major_minor_without_dot="${platform_python_version_major_minor//./}"
-
-# Example value: "python39"
-python_package_name="python${platform_python_version_major_minor_without_dot}"
-
-rpm_opts=(
-    # Query existing package and print it's name
-    --query
-
-    # Don't print query output, we only need exit status code here
-    --quiet
-)
-if ! rpm "${rpm_opts[@]}" "${python_package_name}"; then
-    printf -- \
-        '%s: Info: Installing the Python interpreter...\n' \
-        "${script_name}"
-    if ! dnf install -y "${python_package_name}"; then
-        printf -- \
-            '%s: Error: Unable to install the Python interpreter.\n' \
             "${script_name}" \
             1>&2
         return 2
