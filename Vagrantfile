@@ -3,7 +3,7 @@
 # Copyright 2024 林博仁(Buo-ren, Lin) <buo.ren.lin@gmail.com>
 # SPDX-License-Identifier: CC-BY-SA-4.0
 Vagrant.configure("2") do |config|
-  config.vm.box = "generic/rocky8"
+  config.vm.box = "generic/rocky9"
 
   config.vm.synced_folder ".", "/vagrant"
 

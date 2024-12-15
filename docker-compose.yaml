@@ -13,7 +13,7 @@ services:
   lab-environment:
     container_name: rhel-packaging-lab
     hostname: rhel-packaging-lab
-    image: rockylinux:8
+    image: rockylinux:9
     volumes:
       - type: bind
         source: ./
@@ -36,7 +36,7 @@ services:
   test-environment:
     container_name: rhel-packaging-lab-test
     hostname: rhel-packaging-lab-test
-    image: rockylinux:8
+    image: rockylinux:9
     volumes:
       - type: bind
         source: ./
