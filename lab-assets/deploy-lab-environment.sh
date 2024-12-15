@@ -131,6 +131,20 @@ if ! rpm "${rpm_opts[@]}" "${lab_dependency_pkgs[@]}"; then
     fi
 fi
 
+if test -e /project; then
+    # Change the working directory to the bind-mounted project directory
+    if ! cd /project; then
+        printf \
+            '%s: Error: Unable to switch the working directory to /project.\n' \
+            "${script_name}" \
+            1>&2
+        return 2
+    fi
+elif test -e /vagrant; then
+    # It's a Vagrant VM, provide easy access to the project directory
+    echo 'cd /vagrant' >/etc/profile.d/01-cd-vagrant-dir.sh
+fi
+
 # Reset interpreter behavior so the future profile program won't break because of it
 set_opts=(
     +o errexit
@@ -151,18 +165,4 @@ if ! trap - ERR; then
         "${script_name}" \
         1>&2
     return 2
-fi
-
-if test -e /project; then
-    # Change the working directory to the bind-mounted project directory
-    if ! cd /project; then
-        printf \
-            '%s: Error: Unable to switch the working directory to /project.\n' \
-            "${script_name}" \
-            1>&2
-        return 2
-    fi
-elif test -e /vagrant; then
-    # It's a Vagrant VM, provide easy access to the project directory
-    echo 'cd /vagrant' >/etc/profile.d/01-cd-vagrant-dir.sh
 fi
