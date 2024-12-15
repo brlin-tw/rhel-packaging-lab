@@ -171,6 +171,22 @@ if ! rpm "${rpm_opts[@]}" "${python_package_name}"; then
     fi
 fi
 
+if ! command -v python >/dev/null; then
+    printf -- \
+        '%s: Info: Ensure the existence of the "python" command...\n' \
+        "${script_name}"
+    ln_opts=(
+        --symbolic
+    )
+    if ! ln "${ln_opts[@]}" /usr/bin/python3 /usr/local/bin/python; then
+        printf -- \
+            '%s: Error: Unable to ensure the existence of the "python" command.\n' \
+            "${script_name}" \
+            1>&2
+        return 2
+    fi
+fi
+
 if test -e /project; then
     # Change the working directory to the bind-mounted project directory
     if ! cd /project; then
