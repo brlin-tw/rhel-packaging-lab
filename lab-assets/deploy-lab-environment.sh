@@ -143,6 +143,10 @@ lab_dependency_pkgs=(
 
     # For editing source code files
     vim-enhanced
+
+    # For creating the source release archives
+    gzip
+    tar
 )
 rpm_opts=(
     # Query existing package and print it's name
