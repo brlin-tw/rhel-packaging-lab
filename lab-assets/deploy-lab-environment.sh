@@ -4,6 +4,16 @@
 # Copyright 2024 林博仁(Buo-ren Lin) <buo.ren.lin@gmail.com>
 # SPDX-License-Identifier: CC-BY-SA-4.0
 
+# Check whether the script is sourced, which is unfortunately not a trivial task
+# https://stackoverflow.com/a/28776166/6219078
+sourced=0
+if [ -n "$BASH_VERSION" ]; then
+    (return 0 2>/dev/null) && sourced=1
+else # All other shells: examine $0 for known shell binary filenames.
+    # Detects `sh` and `dash`; add additional shell filenames as needed.
+    case ${0##*/} in sh|-sh|dash|-dash) sourced=1;; esac
+fi
+
 set_opts=(
     # Terminate script execution when an unhandled error occurs
     -o errexit
@@ -18,7 +28,11 @@ if ! set "${set_opts[@]}"; then
         '%s: Error: Unable to configure the defensive interpreter behaviors.\n' \
         "${0}" \
         1>&2
-    return 1
+    if test "${sourced}" == 1; then
+        return 1
+    else
+        exit 1
+    fi
 fi
 
 required_commands=(
@@ -40,7 +54,11 @@ if test "${flag_required_command_check_failed}" == true; then
         '%s: Error: Required command check failed, please check your installation.\n' \
         "${0}" \
         1>&2
-    return 1
+    if test "${sourced}" == 1; then
+        return 1
+    else
+        exit 1
+    fi
 fi
 
 if test -v BASH_SOURCE; then
@@ -75,14 +93,22 @@ trap_err(){
         '%s: Error: The program prematurely terminated due to an unhandled error.\n' \
         "${script_name}" \
         1>&2
-    return 99
+    if test "${sourced}" == 1; then
+        return 99
+    else
+        exit 99
+    fi
 }
 if ! trap trap_err ERR; then
     printf -- \
         '%s: Error: Unable to set the ERR trap.\n' \
         "${script_name}" \
         1>&2
-    return 1
+    if test "${sourced}" == 1; then
+        return 1
+    else
+        exit 1
+    fi
 fi
 
 if test "${EUID}" -ne 0; then
@@ -90,7 +116,11 @@ if test "${EUID}" -ne 0; then
         '%s: Error: This program is required to be run as the superuser(root).\n' \
         "${script_name}" \
         1>&2
-    return 1
+    if test "${sourced}" == 1; then
+        return 1
+    else
+        exit 1
+    fi
 fi
 
 lab_dependency_pkgs=(
@@ -130,7 +160,11 @@ if ! rpm "${rpm_opts[@]}" "${lab_dependency_pkgs[@]}"; then
             '%s: Error: Unable to install the dependencies for the lab activities.\n' \
             "${script_name}" \
             1>&2
-        return 2
+        if test "${sourced}" == 1; then
+            return 2
+        else
+            exit 2
+        fi
     fi
 fi
 
@@ -146,7 +180,11 @@ if ! command -v python >/dev/null; then
             '%s: Error: Unable to ensure the existence of the "python" command.\n' \
             "${script_name}" \
             1>&2
-        return 2
+        if test "${sourced}" == 1; then
+            return 2
+        else
+            exit 2
+        fi
     fi
 fi
 
@@ -157,7 +195,11 @@ if test -e /project; then
             '%s: Error: Unable to switch the working directory to /project.\n' \
             "${script_name}" \
             1>&2
-        return 2
+        if test "${sourced}" == 1; then
+            return 2
+        else
+            exit 2
+        fi
     fi
 elif test -e /vagrant; then
     # It's a Vagrant VM, provide easy access to the project directory
@@ -175,7 +217,11 @@ if ! set "${set_opts[@]}"; then
         '%s: Error: Unable to unconfigure the defensive interpreter behaviors.\n' \
         "${script_name}" \
         1>&2
-    return 2
+    if test "${sourced}" == 1; then
+        return 2
+    else
+        exit 2
+    fi
 fi
 
 if ! trap - ERR; then
@@ -183,5 +229,9 @@ if ! trap - ERR; then
         '%s: Error: Unable to unset the ERR trap.\n' \
         "${script_name}" \
         1>&2
-    return 2
+    if test "${sourced}" == 1; then
+        return 2
+    else
+        exit 2
+    fi
 fi
