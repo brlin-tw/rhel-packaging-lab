@@ -94,3 +94,6 @@ cello
 
 # Don't track byte-compiled Python programs
 __pycache__/
+
+# Don't track the rpmbuild directory, which only hosts files that are shared between the lab environment and the test environment
+/rpmbuild/

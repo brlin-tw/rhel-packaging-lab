@@ -21,6 +21,9 @@ services:
       - type: bind
         source: ./lab-assets/deploy-lab-environment.sh
         target: /etc/profile.d/00-deploy-lab-environment.sh
+      - type: bind
+        source: ./rpmbuild
+        target: /root/rpmbuild
     environment:
       - http_proxy
       - https_proxy
@@ -41,6 +44,9 @@ services:
       - type: bind
         source: ./
         target: /project
+      - type: bind
+        source: ./rpmbuild
+        target: /root/rpmbuild
     environment:
       - http_proxy
       - https_proxy
