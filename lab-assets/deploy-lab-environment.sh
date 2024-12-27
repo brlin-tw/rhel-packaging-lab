@@ -174,7 +174,7 @@ fi
 
 if ! command -v python >/dev/null; then
     printf -- \
-        '%s: Info: Ensure the existence of the "python" command...\n' \
+        '%s: Info: Ensuring the existence of the "python" command...\n' \
         "${script_name}"
     ln_opts=(
         --symbolic
