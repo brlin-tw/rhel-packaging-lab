@@ -12,7 +12,7 @@ Summary:        Example Python library
 
 License:        GPLv3
 URL:            https://github.com/fedora-python/Pello
-Source0:        %{url}/archive/v%{version}/Pello-%{version}.tar.gz
+Source0:        pello-%{version}.tar.gz
 
 BuildArch:      noarch
 BuildRequires:  python%{python3_pkgversion}-devel
