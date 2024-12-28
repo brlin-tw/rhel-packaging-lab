@@ -138,6 +138,9 @@ lab_dependency_pkgs=(
     gcc
     make
 
+    # Runtime dependency of the "rpmdev-newspec" command
+    git
+
     # For building and running the pello package
     python3
 
