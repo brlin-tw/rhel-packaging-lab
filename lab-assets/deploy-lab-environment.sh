@@ -125,6 +125,7 @@ fi
 
 lab_dependency_pkgs=(
     # For utilities for (help) packaging RPM packages
+    rpm-build
     rpmdevtools
 
     # For running the bello package, this should already be installed so it's just for completeness

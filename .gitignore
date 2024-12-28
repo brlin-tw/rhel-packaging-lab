@@ -97,3 +97,6 @@ __pycache__/
 
 # Don't track the rpmbuild directory, which only hosts files that are shared between the lab environment and the test environment
 /rpmbuild/
+
+# Don't track built RPM packages
+*.rpm
