@@ -13,3 +13,5 @@ clean:
 install: cello
 	$(INSTALL) -d "$(DESTDIR)$(PREFIX)/bin"
 	$(INSTALL) cello "$(DESTDIR)$(PREFIX)/bin/cello"
+uninstall:
+	rm -f "$(DESTDIR)$(PREFIX)/bin/cello"
