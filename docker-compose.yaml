@@ -13,7 +13,8 @@ services:
   lab-environment:
     container_name: rhel-packaging-lab
     hostname: rhel-packaging-lab
-    image: rockylinux:9
+    image: registry.redhat.io/ubi9/ubi
+    #image: rockylinux:9
     volumes:
       - type: bind
         source: ./
@@ -39,7 +40,8 @@ services:
   test-environment:
     container_name: rhel-packaging-lab-test
     hostname: rhel-packaging-lab-test
-    image: rockylinux:9
+    image: registry.redhat.io/ubi9/ubi
+    #image: rockylinux:9
     volumes:
       - type: bind
         source: ./
