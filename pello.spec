@@ -10,7 +10,7 @@ Version:        0.1.1
 Release:        1%{?dist}
 Summary:        Example Python library
 
-License:        GPLv3
+License:        GPLv3+
 URL:            https://github.com/fedora-python/Pello
 Source0:        pello-%{version}.tar.gz
 
