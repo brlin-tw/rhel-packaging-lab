@@ -1,42 +1,41 @@
 # RPM packaging recipe for the cello package
 #
+# Copyright 2024 Red Hat, Inc.
 # Copyright 2024 林博仁(Buo-ren Lin) <buo.ren.lin@gmail.com>
 # SPDX-License-Identifier: CC-BY-SA-3.0
 Name:           cello
-Version:
+Version:        1.0
 Release:        1%{?dist}
-Summary:
+Summary:        Hello World example implemented in C
 
-License:
-URL:
-Source0:
+License:        GPLv3+
+URL:            https://www.example.com/%{name}
+Source0:        https://www.example.com/%{name}/releases/%{name}-%{version}.tar.gz
 
-BuildRequires:
-Requires:
+Patch0:         cello-output-first-patch.patch
+
+BuildRequires: gcc
+BuildRequires:  make
 
 %description
-
+The long-tail description for our Hello World Example implemented in
+C.
 
 %prep
-%autosetup
+%setup -q
 
+%patch0
 
 %build
-%configure
-%make_build
-
+make %{?_smp_mflags}
 
 %install
-rm -rf $RPM_BUILD_ROOT
 %make_install
 
-
 %files
-%license add-license-file-here
-%doc add-docs-here
-
-
+%license LICENSE
+%{_bindir}/%{name}
 
 %changelog
-* Fri Dec 27 2024 root
--
+* Sat Dec 28 2024 林博仁(Buo-ren Lin) <buo.ren.lin@gmail.com> - 1.0-1
+- First cello package
