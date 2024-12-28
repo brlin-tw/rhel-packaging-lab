@@ -6,7 +6,7 @@
 %global python3_pkgversion 3.11
 
 Name:           python-hello
-Version:        0.1.1
+Version:        1.0.2
 Release:        1%{?dist}
 Summary:        Example Python library
 
