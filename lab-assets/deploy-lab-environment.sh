@@ -149,6 +149,9 @@ lab_dependency_pkgs=(
     rpm-build
     rpmdevtools
 
+    # For checking RPM packaging
+    rpmlint
+
     # For editing source code files
     vim-enhanced
 )
