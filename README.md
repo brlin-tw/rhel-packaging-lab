@@ -481,6 +481,24 @@ It seems that the output in the documentation is not based on the one that uses 
 
 This issue is filed as [\[RHELDOCS-19479\] The check result of the pello SPEC file is inconsistent in the "Checking the pello spec file for common errors" section of the "Packaging and distributing software" RHEL9 documentation - Red Hat Issue Tracker](https://issues.redhat.com/browse/RHELDOCS-19479) on the upstream issue tracker.
 
+#### Incorrect binary package filename used in the "Checking the pello binary RPM for common errors" section
+
+**Document link:** <https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/packaging_and_distributing_software/index#checking-the-pello-binary-rpm_checking-pello-for-common-errors>
+
+**Section number and name:** 4.7.2.2. Checking the pello binary RPM for common errors
+
+**Describe the issue:**
+
+The example output in this section uses the `pello-0.1.2-1.el8.noarch.rpm` binary filename, which doesn't exist when using the example spec file given in [the 4.5.4. An example SPEC file for a program written in Python section](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/packaging_and_distributing_software/index#an-example-spec-file-for-a-program-written-in-python-rhel9_working-with-spec-files), which will result in the `python3.11-pello-1.0.2-1.el9.noarch.rpm` binary package filename.
+
+**Impact of this issue:** Documentation consumers will not be able to directly reproduce the same outcome as in the example output.
+
+**Suggestions for improvement:** Rename the binary package filename to `python3.11-pello-1.0.2-1.el9.noarch.rpm`.
+
+---
+
+This issue is filed as [\[RHELDOCS-19482\] Incorrect binary package filename used in the "Checking the pello binary RPM for common errors" section of the "Packaging and distributing software" RHEL9 documentation - Red Hat Issue Tracker](https://issues.redhat.com/browse/RHELDOCS-19482) on the upstream issue tracker.
+
 ## References
 
 The following material is referenced during the development of this project:
