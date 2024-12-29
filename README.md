@@ -423,6 +423,42 @@ The example commands in the [4.6.2. Rebuilding a binary RPM from a source RPM](h
 
 This issue is filed as [\[RHELDOCS-19475\] Incorrect SRPM filenames specified in the example commands of the 4.6.1. Building source RPMs section of the Packaging and distributing software RHEL9 documentation - Red Hat Issue Tracker](https://issues.redhat.com/projects/RHELDOCS/issues/RHELDOCS-19475) on the upstream issue tracker.
 
+#### The cello binary package is not buildable("error: Empty %files file /root/rpmbuild/BUILD/cello-1.0/debugsourcefiles.list")
+
+**Document link:**
+
+* <https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/packaging_and_distributing_software/index#rebuilding-a-binary-from-a-source-rpm_building-rpms>
+* <https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/packaging_and_distributing_software/index#building-a-binary-from-the-spec-file_building-rpms>
+
+**Section number and name:**
+
+* 4.6.2. Rebuilding a binary RPM from a source RPM
+* 4.6.3. Building a binary RPM from the spec file
+
+**Describe the issue:**
+
+When building the cello package from source RPM/spec file, the following error occurred:
+
+```text
+
+    ...stripped...
+
+Processing files: cello-debugsource-1.0-1.el9.x86_64
+error: Empty %files file /root/rpmbuild/BUILD/cello-1.0/debugsourcefiles.list
+
+
+RPM build errors:
+    Empty %files file /root/rpmbuild/BUILD/cello-1.0/debugsourcefiles.list
+```
+
+**Impact of this issue:** The documentation consumer cannot reproduce the same outcome in the documentation.
+
+**Suggestions for improvement:** Fix the cello spec file so that the binary package is buildable.
+
+---
+
+This issue is filed as [\[RHELDOCS-19483\] The cello binary package is not buildable("error: Empty %files file /root/rpmbuild/BUILD/cello-1.0/debugsourcefiles.list") in the "Packaging and distributing software" RHEL9 documentation - Red Hat Issue Tracker](https://issues.redhat.com/browse/RHELDOCS-19483) on the upstream issue tracker.
+
 #### The "Checking the {b,p,c}ello SRPM for common errors" portions of the "Checking RPMs for common errors" section should have their own sub-sections
 
 **Document link:** <https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/packaging_and_distributing_software/index#checking-rpms-for-common-errors_packaging-software>
