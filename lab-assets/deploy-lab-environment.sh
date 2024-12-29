@@ -124,10 +124,6 @@ if test "${EUID}" -ne 0; then
 fi
 
 lab_dependency_pkgs=(
-    # For utilities for (help) packaging RPM packages
-    rpm-build
-    rpmdevtools
-
     # For running the bello package, this should already be installed so it's just for completeness
     bash
 
@@ -142,15 +138,19 @@ lab_dependency_pkgs=(
     # Runtime dependency of the "rpmdev-newspec" command
     git
 
-    # For building and running the pello package
-    python3
-
-    # For editing source code files
-    vim-enhanced
-
     # For creating the source release archives
     gzip
     tar
+
+    # For building and running the pello package
+    python3
+
+    # For utilities for (help) packaging RPM packages
+    rpm-build
+    rpmdevtools
+
+    # For editing source code files
+    vim-enhanced
 )
 rpm_opts=(
     # Query existing package and print it's name
