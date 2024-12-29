@@ -330,6 +330,22 @@ Either:
 
 This issue is filed as [\[RHELDOCS-19474\] The example SPEC file of the pello package does not apply to the source archive created in previous sections in the Packaging and distributing software RHEL9 documentation - Red Hat Issue Tracker](https://issues.redhat.com/projects/RHELDOCS/issues/RHELDOCS-19474) on the upstream issue tracker.
 
+#### Outdated RPM package release strings specified throughout the documentation
+
+**Document link**: <https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/packaging_and_distributing_software/>
+
+**Section number and name**: Multiple(26 matches), starting from the "4.2.1. Preamble items section" to the "5.3.6. Using non-shell scripts in a spec file" section.
+
+**Describe the issue**: The package release string mentioned in the documentation references RHEL 8, which is outdated for documentation that targets RHEL 9.
+
+**Impact of this issue**: Package filenames in the example command will not match the actual package built in the documentation consumer's environment, causing various "file not found" error messages(e.g. RHELDOCS-19475).
+
+**Suggestions for improvement**: Replace all references of `el8` with `el9`.
+
+---
+
+This issue is filed as [\[RHELDOCS-19480\] Outdated RPM package release strings specified through out the "Packaging and distributing software" RHEL9 documentation - Red Hat Issue Tracker](https://issues.redhat.com/browse/RHELDOCS-19480) on the upstream issue tracker.
+
 #### Incorrect SRPM filenames specified in the example commands of the Building source RPMs section
 
 **Document link**: <https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/packaging_and_distributing_software/index#building-source-rpms_building-rpms>
