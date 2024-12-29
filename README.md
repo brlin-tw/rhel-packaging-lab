@@ -346,6 +346,44 @@ This issue is filed as [\[RHELDOCS-19474\] The example SPEC file of the pello pa
 
 This issue is filed as [\[RHELDOCS-19480\] Outdated RPM package release strings specified through out the "Packaging and distributing software" RHEL9 documentation - Red Hat Issue Tracker](https://issues.redhat.com/browse/RHELDOCS-19480) on the upstream issue tracker.
 
+#### The filename of the SPEC file of the pello package triggers the rpmlint invalid-spec-name linting error
+
+**Document link**: <https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/packaging_and_distributing_software/index#creating-spec-files-with-rpmdev-newspec_working-with-spec-files>
+
+**Section number and name**:
+
+* 4.5.1. Creating a new spec file for sample Bash, Python, and C programs
+* 4.6.1. Building source RPMs
+* 4.6.3. Building a binary RPM from the spec file
+* 4.7.2.1. Checking the pello spec file for common errors
+* 5.3.6. Using non-shell scripts in a spec file
+
+**Describe the issue**:
+
+When running the `rpmlint` command documented in the "4.7.2.1. Checking the pello spec file for common errors" section, I noticed the following linting error:
+
+```text
+python-hello.src: E: invalid-spec-name
+The spec file name (without the .spec suffix) must match the package name
+("Name:" tag). Either rename your package or the specfile.
+```
+
+**Impact of this issue**: Documentation consumers might learn a spec file naming convention for Python packages that is not complying to the best practices.
+
+**Suggestions for improvement**:
+
+As the example spec file in [the "4.5.4. An example SPEC file for a program written in Python" section](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/packaging_and_distributing_software/index#an-example-spec-file-for-a-program-written-in-python-rhel9_working-with-spec-files) uses the `python-pello` package name:
+
+```spec
+Name:           python-pello
+```
+
+the filename of the spec file should instead be `python-pello.spec`.  The 2. bullet point explaining the naming of Python RPM packages probably should be moved to [the "4.5.1. Creating a new spec file for sample Bash, Python, and C programs" section](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/packaging_and_distributing_software/index#creating-spec-files-with-rpmdev-newspec_working-with-spec-files) to properly address the different naming of the spec file for the pello package.
+
+---
+
+This issue is filed as [\[RHELDOCS-19481\] The filename of the SPEC file of the pello package triggers the rpmlint invalid-spec-name linting error in the "Packaging and distributing software" RHEL9 documentation - Red Hat Issue Tracker](https://issues.redhat.com/projects/RHELDOCS/issues/RHELDOCS-19481?filter=reportedbyme) on the upstream issue tracker.
+
 #### Incorrect SRPM filenames specified in the example commands of the Building source RPMs section
 
 **Document link**: <https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/packaging_and_distributing_software/index#building-source-rpms_building-rpms>
