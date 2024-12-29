@@ -145,7 +145,7 @@ lab_dependency_pkgs=(
     # For building and running the pello package
     python3
 
-    # For utilities for (help) packaging RPM packages
+    # For packaging RPM packages
     rpm-build
     rpmdevtools
 
