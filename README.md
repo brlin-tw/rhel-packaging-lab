@@ -389,6 +389,44 @@ This issue is filed as [\[RHELDOCS-19475\] Incorrect SRPM filenames specified in
 
 This issue is filed as [\[RHELDOCS-19478\] The "Checking the {b,p,c}ello SRPM for common errors" portions of the "Checking RPMs for common errors" chapter should have their own sub-sections - Red Hat Issue Tracker](https://issues.redhat.com/browse/RHELDOCS-19478) on the upstream issue tracker.
 
+#### The check result of the pello SPEC file is inconsistent in the "Checking the pello spec file for common errors" section
+
+**Document link:** <https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/packaging_and_distributing_software/index#checking-the-pello-spec-file_checking-pello-for-common-errors>
+
+**Section number and name:** 4.7.2.1. Checking the pello spec file for common errors
+
+**Describe the issue:**
+
+The example output of the `rpmlint pello.spec` command given in the documentation:
+
+```text
+$ rpmlint pello.spec
+pello.spec:30: E: hardcoded-library-path in %{buildroot}/usr/lib/%{name}
+pello.spec:34: E: hardcoded-library-path in /usr/lib/%{name}/%{name}.pyc
+pello.spec:39: E: hardcoded-library-path in %{buildroot}/usr/lib/%{name}/
+pello.spec:43: E: hardcoded-library-path in /usr/lib/%{name}/
+pello.spec:45: E: hardcoded-library-path in /usr/lib/%{name}/%{name}.py*
+pello.spec: W: invalid-url Source0: https://www.example.com/pello/releases/pello-0.1.2.tar.gz HTTP Error 404: Not Found
+0 packages and 1 specfiles checked; 5 errors, 1 warnings.
+```
+
+is not reproducible using the spec file given in the 4.5.4. An example SPEC file for a program written in Python section, which produces the following output instead:
+
+```text
+$ rpmlint pello.spec
+0 packages and 1 specfiles checked; 0 errors, 0 warnings.
+```
+
+It seems that the output in the documentation is not based on the one that uses the sources from the <https://github.com/fedora-python/Pello> project.
+
+**Impact of this issue:** Documentation consumers may be unnecessarily confused by the unexpected outcome.
+
+**Suggestions for improvement:** Revert the change that uses the <https://github.com/fedora-python/Pello> project to allow reproducing rpmlint warnings and errors.
+
+---
+
+This issue is filed as [\[RHELDOCS-19479\] The check result of the pello SPEC file is inconsistent in the "Checking the pello spec file for common errors" section of the "Packaging and distributing software" RHEL9 documentation - Red Hat Issue Tracker](https://issues.redhat.com/browse/RHELDOCS-19479) on the upstream issue tracker.
+
 ## References
 
 The following material is referenced during the development of this project:
