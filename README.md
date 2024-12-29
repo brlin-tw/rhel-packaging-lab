@@ -369,6 +369,26 @@ The example commands in the [4.6.2. Rebuilding a binary RPM from a source RPM](h
 
 This issue is filed as [\[RHELDOCS-19475\] Incorrect SRPM filenames specified in the example commands of the 4.6.1. Building source RPMs section of the Packaging and distributing software RHEL9 documentation - Red Hat Issue Tracker](https://issues.redhat.com/projects/RHELDOCS/issues/RHELDOCS-19475) on the upstream issue tracker.
 
+#### The "Checking the {b,p,c}ello SRPM for common errors" portions of the "Checking RPMs for common errors" section should have their own sub-sections
+
+**Document link:** <https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/packaging_and_distributing_software/index#checking-rpms-for-common-errors_packaging-software>
+
+**Section number and name:**
+
+* 4.7.1. Checking a sample Bash program for common errors
+* 4.7.2. Checking a sample Python program for common errors
+* 4.7.3. Checking a sample C program for common errors
+
+**Describe the issue:** In the "4.7.{1,2,3}.1. Checking the {b,p,c}ello spec file for common errors" sections both spec file and the SRPM package are checked using `rpmlint`, which are inconsistent with the section title.
+
+**Impact of this issue:** Documentation consumers may be unnecessarily confused by the unexpected content.
+
+**Suggestions for improvement:** A set of "4.7.{1,2,3}.2. Checking the {b,p,c}ello source RPM for common errors" separate sections should be inserted before the corresponding binary RPM counterparts.
+
+---
+
+This issue is filed as [\[RHELDOCS-19478\] The "Checking the {b,p,c}ello SRPM for common errors" portions of the "Checking RPMs for common errors" chapter should have their own sub-sections - Red Hat Issue Tracker](https://issues.redhat.com/browse/RHELDOCS-19478) on the upstream issue tracker.
+
 ## References
 
 The following material is referenced during the development of this project:
